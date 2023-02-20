@@ -1,5 +1,7 @@
 # A Simple Microservice App with Node.js, React.js and Express
 
+> WIP
+
 This is a simple microservice application built with Node.js, React.js and Express. It allows users to add post titles and comments, while comments containing the word "orange" are rejected. The application consists of 5 services and a react frontend each located in its own folder.
 
 ## Features
@@ -31,7 +33,7 @@ The application consists of five microservices: post service, comments service, 
 ```bash
 cd <service-folder>
 npm install
-npm start
+npm dev # to start a development server
 ```
 
 ## Running the Frontend
