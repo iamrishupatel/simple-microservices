@@ -16,16 +16,17 @@ const events = [];
 app.post('/events', async (req, res) => {
   const event = req.body;
   events.push(event);
+  console.log("Incoming Event", event.type);
   try {
     await Promise.all([
       // post service
-      axios.post('http://localhost:8001/events', event),
+      axios.post('http://posts-clusterip-srv:8001/events', event),
       // comments service
-      axios.post('http://localhost:8002/events', event),
+      axios.post('http://comments-clusterip-srv:8002/events', event),
       // query service
-      axios.post('http://localhost:8003/events', event),
+      axios.post('http://query-clusterip-srv:8003/events', event),
       // moderation service
-      axios.post('http://localhost:8004/events', event),
+      axios.post('http://mod-clusterip-srv:8004/events', event),
 
     ])
     return res.send({}).end()
@@ -37,7 +38,7 @@ app.post('/events', async (req, res) => {
 
 });
 
-app.get("/events", (req,res) => {
+app.get("/events", (req, res) => {
   res.send(events);
 })
 

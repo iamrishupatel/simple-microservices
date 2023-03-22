@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: events-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: events
+  template:
+    metadata:
+      labels:
+        app: events
+    spec:
+      containers:
+        - name: events
+          image: iamrishupatel/blog-event-bus
+          imagePullPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: events-clusterip-srv
+spec:
+  selector:
+    app: events
+  type: ClusterIP
+  ports:
+    - name: events
+      protocol: TCP
+      port: 8005
+      targetPort: 8005

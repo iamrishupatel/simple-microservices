@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mod-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mod
+  template:
+    metadata:
+      labels:
+        app: mod
+    spec:
+      containers:
+        - name: mod
+          image: iamrishupatel/mod
+          imagePullPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mod-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: mod
+  ports:
+    - name: mod
+      protocol: TCP
+      port: 8004
+      targetPort: 8004

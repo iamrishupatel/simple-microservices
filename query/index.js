@@ -48,7 +48,8 @@ function handleEvents(type, data) {
 }
 
 app.post('/events', (req, res) => {
-  handleEvents(req,res);
+  const { type, data } = req.body
+  handleEvents(type, data);
   return res.status(201).send({});
 
 
@@ -70,7 +71,7 @@ app.get('/db', (req, res) => {
 
 app.listen(8003, async () => {
   console.log('listening on http://localhost:8003');
-  const {data} = await axios.get('http://localhost:8005/events')
+  const { data } = await axios.get('http://events-clusterip-srv:8005/events')
   data.forEach((event) => {
     handleEvents(event.type, event.data)
   })

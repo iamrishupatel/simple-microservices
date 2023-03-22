@@ -27,7 +27,7 @@ app.post("/post", async (req, res) => {
   };
 
   try {
-    await axios.post('http://localhost:8005/events', {
+    await axios.post('http://events-clusterip-srv:8005/events', {
       type: 'postCreated',
       data: {
         id, title
