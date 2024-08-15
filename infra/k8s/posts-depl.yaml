@@ -15,8 +15,7 @@ spec:
       containers:
         - name: posts
           image: iamrishupatel/posts
-          imagePullPolicy: Always
-
+          imagePullPolicy: IfNotPresent
 ---
 apiVersion: v1
 kind: Service

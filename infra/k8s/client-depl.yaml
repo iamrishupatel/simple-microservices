@@ -1,33 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mod-depl
+  name: client-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mod
+      app: client
   template:
     metadata:
       labels:
-        app: mod
+        app: client
     spec:
       containers:
-        - name: mod
-          image: iamrishupatel/mod
+        - name: client
+          image: iamrishupatel/client
           imagePullPolicy: IfNotPresent
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mod-clusterip-srv
+  name: client-srv
 spec:
-  type: ClusterIP
   selector:
-    app: mod
+    app: client
   ports:
-    - name: mod
+    - name: client
       protocol: TCP
-      port: 8004
-      targetPort: 8004
+      port: 3000
+      targetPort: 3000

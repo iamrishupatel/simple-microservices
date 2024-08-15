@@ -15,7 +15,7 @@ spec:
       containers:
         - name: query
           image: iamrishupatel/query
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
 
 ---
 apiVersion: v1

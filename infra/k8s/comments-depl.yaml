@@ -15,7 +15,7 @@ spec:
       containers:
         - name: comments
           image: iamrishupatel/comments
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
 
 ---
 apiVersion: v1
